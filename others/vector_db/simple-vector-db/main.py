@@ -1,6 +1,6 @@
 import numpy as np
 
-# Step 1: Create random vectors (for learning purposes)
+# Step 1: Create random vectors
 def generate_random_vectors(num_vectors, dimensions):
     vectors = np.random.rand(num_vectors, dimensions)
     return vectors
@@ -18,15 +18,15 @@ def find_most_similar_vector(similarity_scores):
     return similarity_scores[0]  # Return the most similar vector
 
 # Parameters
-num_vectors = 5  # Number of vectors to generate
-dimensions = 10  # Number of dimensions for each vector
+num_vectors = 100  # Number of vectors to generate
+dimensions = 5  # Number of dimensions for each vector
 
 # Generate random vectors
 vectors = generate_random_vectors(num_vectors, dimensions)
 print("Generated Vectors:")
 print(vectors)
 
-# Choose a query vector (let’s take the first one for simplicity)
+# Choose a query vector
 query_vector = vectors[0]
 
 # Calculate cosine similarities between the query and all other vectors
