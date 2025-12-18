@@ -1,5 +1,7 @@
 # Agents
 
+Autonomous agents, reasoning, tool use
+
 is somehow an Applied AI
 
 Building AI systems that use models to reason, act, plan, and interact with tools and APIs.

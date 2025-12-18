@@ -1,5 +1,7 @@
 # Generative AI
 
+VAE, GAN, diffusion, transformers
+
 Diffusion models
 large language models (LLMs)
 fine-tuning
