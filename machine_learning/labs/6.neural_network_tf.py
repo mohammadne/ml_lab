@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import tensorflow as tf
 from sklearn.datasets import make_blobs
+from tensorflow.keras import regularizers
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.models import Sequential
 
@@ -170,8 +171,10 @@ def multi_class_classification():
     tf.random.set_seed(1234)  # applied to achieve consistent results
     model = Sequential(
         [
-            Dense(3, activation='relu',   name="L1"),
-            Dense(6, activation='linear', name="L2")
+            Dense(3, activation='relu',
+                  kernel_regularizer=regularizers.l2(0.01),  name="L1"),
+            Dense(6, activation='linear',
+                  kernel_regularizer=regularizers.l2(0.01), name="L2")
         ]
     )
 
