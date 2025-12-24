@@ -13,13 +13,12 @@ def custom_dense(a_in, W, b):
       W    (ndarray (n,j)) : Weight matrix, n features per unit, j units
       b    (ndarray (j, )) : bias vector, j units  
     Returns
-      a_out (ndarray (j,))  : j units|
+      a_out (ndarray (j,))  : j units
     """
     units = W.shape[1]
     a_out = np.zeros(units)
     for j in range(units):
-        w = W[:, j]
-        z = np.dot(w, a_in) + b[j]
+        z = np.dot(W[:, j], a_in) + b[j]
         a_out[j] = sigmoid(z)
     return (a_out)
 

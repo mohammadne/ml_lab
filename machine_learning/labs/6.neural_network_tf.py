@@ -149,8 +149,8 @@ def multi_class_classification():
         a2 (horizontal line 2) -> for class 0, 1, 2 and 3 is zero and for class 4 and 5 is their y (w3.x + b3)
             it means by W and b, the z for class 0 is a = [0, 0, 0] and
             for an example in class 3 -> a = [11.124, 34.534, 0]
-    in the second linear layer we use SparseCategoricalCrossentropy in 4 neurons
-    and output a vector of 4 numbers (a) which has the probability of a value to
+    in the second linear layer we use SparseCategoricalCrossentropy in 6 neurons
+    and output a vector of 6 numbers (a) which has the probability of a value to
     be in a class
     """
 

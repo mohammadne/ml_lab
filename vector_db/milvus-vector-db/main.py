@@ -1,5 +1,6 @@
-from pymilvus import Collection, CollectionSchema, FieldSchema, DataType, connections
 import numpy as np
+from pymilvus import (Collection, CollectionSchema, DataType, FieldSchema,
+                      connections)
 
 # Connect to Milvus server (19530 is gRPC port)
 connections.connect("default", host="localhost", port="19530")
@@ -50,7 +51,8 @@ print("Collection loaded into memory!")
 query_vector = vectors[0].reshape(1, -1)
 
 # Perform a similarity search (find 3 nearest neighbors)
-search_params = {"nprobe": 10}  # nprobe is a parameter controlling how many partitions to search in the index, higher values give more accurate results but take longer
+# nprobe is a parameter controlling how many partitions to search in the index, higher values give more accurate results but take longer
+search_params = {"nprobe": 10}  
 results = collection.search(query_vector, "vector", search_params, limit=3)
 
 # Print the search results

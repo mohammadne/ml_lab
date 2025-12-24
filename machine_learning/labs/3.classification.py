@@ -1,14 +1,14 @@
-import math
 import time
 
 import matplotlib.pyplot as plt
 import numpy as np
 from numpy.typing import NDArray
+from sklearn.datasets import make_blobs
 
 
 def compute_gradient(
-    x: NDArray[np.float64],  # shape (m, n)
-    y: NDArray,  # shape (m,)
+    x: NDArray,  # shape (m, n)
+    y: NDArray[np.float64],  # shape (m,)
     w: NDArray[np.float64],  # shape (n,)
     b: float
 ) -> tuple[NDArray[np.float64], float, float]:
@@ -27,8 +27,8 @@ def compute_gradient(
 
 
 def gradient_descent(
-    x: NDArray,
-    y: NDArray,
+    x: NDArray, # shape (m, n)
+    y: NDArray, # shape (m,)
     learning_rate: float,
     threshold: float,
     max_iterations: int = 10000
@@ -54,12 +54,12 @@ def gradient_descent(
 
             if abs(prev_cost - current_cost) < threshold:
                 break
+
             prev_cost = current_cost
+            iterations += 1
         except Exception as e:
             print(i, "exception occured", e)
             break
-
-        iterations += 1
 
     w = w_normalized / x_std
     b = b_normalized - np.sum((w_normalized * x_mean) / x_std)
@@ -68,12 +68,20 @@ def gradient_descent(
 
 
 if __name__ == "__main__":
-    data = np.loadtxt("./data/100_classification_samples.csv",
-                      delimiter=",", skiprows=1)
+    # make 2-class dataset for classification
+    x_train, y_train = make_blobs(
+        centers=[[2, -2], [5, 2]],
+        n_samples=100, cluster_std=1.0, random_state=30,
+    )
+    
+    # x_train = np.array([0,1,2,3,4,5,10]).reshape(-1,1)
+    # y_train = np.array([0,0,0,1,1,1,0])
 
-    # Split features (x) and labels (y)
-    x_train = data[:, :-1]   # all rows, first 2 columns
-    y_train = data[:, -1]    # all rows, 3rd column
+    # data = np.loadtxt("./data/100_classification_samples.csv", delimiter=",", skiprows=1)
+    # # Split features (x) and labels (y)
+    # x_train = data[:, :-1]   # all rows, first 2 columns
+    # y_train = data[:, -1]    # all rows, 3rd column
+
     learning_rate = 5.0e-2
     threshold = 1e-5
 

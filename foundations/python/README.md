@@ -3,8 +3,10 @@
 ## Dependencies
 
 ```sh
+source venv/bin/activate
+
 # notebook
-pip install -U ipykernel
+pip install -U ipykernel autopep8
 ```
 
 - microsoft python LSP (download via website or package manager)

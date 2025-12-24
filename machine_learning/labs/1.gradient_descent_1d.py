@@ -3,38 +3,36 @@ import numpy as np
 from numpy.typing import NDArray
 
 
-def compute_cost(x: NDArray[np.float64], y: NDArray[np.float64], w: float, b: float) -> float:
-    result: float = 0.0
-    m: int = x.shape[0]
-    for i in range(m):
-        result += (w * x[i] + b - y[i]) ** 2
-    return result / (2 * m)
-
-
 def compute_gradient(
     x: NDArray[np.float64],
     y: NDArray[np.float64],
     w: float,
     b: float,
-) -> tuple[float, float]:
+) -> tuple[float, float, float]:
     m: int = x.shape[0]
 
     # gradient_w = 0
     # for i in range(m):
-    #     gradient_w += x[i] * ((w*x[i] + b) - y[i])
+    #     gradient_w += x[i] * ((w * x[i] + b) - y[i])
     # gradient_w /= m
 
     # gradient_b = 0
     # for i in range(m):
-    #     gradient_b += (w*x[i] + b) - y[i]
+    #     gradient_b += (w * x[i] + b) - y[i]
     # gradient_b /= m
+    
+    # cost: float = 0.0
+    # for i in range(m):
+    #     cost += (w * x[i] + b - y[i]) ** 2
+    # return cost / (2 * m)
 
     # using vectorization
     error = (w * x + b) - y
     gradient_w = np.dot(error, x) / m
     gradient_b = np.sum(error) / m
+    cost = np.dot(error, error) / (2 * m)
 
-    return gradient_w, gradient_b
+    return gradient_w, gradient_b, cost
 
 
 def gradient_descent(
@@ -50,20 +48,16 @@ def gradient_descent(
     prev_cost = float('inf')
 
     for _ in range(max_iterations):
-        gradient_w, gradient_b = compute_gradient(x, y, w, b)
+        gradient_w, gradient_b, current_cost = compute_gradient(x, y, w, b)
         w = w - learning_rate*gradient_w
         b = b - learning_rate*gradient_b
 
-        # call compute_cost less frequently (for performacne)
-        if iterations % 5 == 0:
-            current_cost = compute_cost(x, y, w, b)
-            history.append([w, b, current_cost])
+        history.append([w, b, current_cost])
 
-            if abs(prev_cost - current_cost) < threshold:
-                break
+        if abs(prev_cost - current_cost) < threshold:
+            break
 
-            prev_cost = current_cost
-
+        prev_cost = current_cost
         iterations += 1
 
     return w, b, iterations, history

@@ -2,16 +2,15 @@ import time
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 from sklearn.linear_model import LinearRegression, LogisticRegression
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 
 # generate x
-x = np.random.uniform(10, 100, 1000).reshape(-1, 1)
+x = np.random.uniform(10, 100, 1000).reshape(-1, 1) # shape (1000, 1)
 
 # generate y ~ log(x) with noise
-y = (2.5 * np.log(x) + 0.3 * np.random.randn(*x.shape)).reshape(-1, 1)
+y = (2.5 * np.log(x) + 0.3 * np.random.randn(*x.shape)).reshape(-1, 1) # shape (1000, 1)
 
 
 indices = np.arange(len(x))
@@ -26,22 +25,14 @@ train_end = int(0.7 * n)   # 70%
 cv_end = int(0.9 * n)     # 70% + 20%
 
 # Split
-x_train = x[:train_end]
-y_train = y[:train_end]
+x_train = x[:train_end] # shape (700, 1)
+y_train = y[:train_end] # shape (700, 1)
 
-x_cv = x[train_end:cv_end]
-y_cv = y[train_end:cv_end]
+x_cv = x[train_end:cv_end] # shape (200, 1)
+y_cv = y[train_end:cv_end] # shape (200, 1)
 
-x_test = x[cv_end:]
-y_test = y[cv_end:]
-
-
-print(f"the shape of the training set (input) is: {x_train.shape}")
-print(f"the shape of the training set (target) is: {y_train.shape}\n")
-print(f"the shape of the cross validation set (input) is: {x_cv.shape}")
-print(f"the shape of the cross validation set (target) is: {y_cv.shape}\n")
-print(f"the shape of the test set (input) is: {x_test.shape}")
-print(f"the shape of the test set (target) is: {y_test.shape}")
+x_test = x[cv_end:] # shape (100, 1)
+y_test = y[cv_end:] # shape (100, 1)
 
 plt.scatter(x_train, y_train, marker='x', c='r', label='Train')
 plt.scatter(x_cv, y_cv, marker='x', c='b', label='Validation')
@@ -68,10 +59,10 @@ linear_model = LinearRegression()
 # linear_model = LogisticRegression(solver='saga', max_iter=1_000_000, tol=1e-5,)
 
 start = time.time()
-# Train the model
-linear_model.fit(X_train_scaled, y_train)
+linear_model.fit(X_train_scaled, y_train) # Train the model
 end = time.time()
-print(f"Training time: {end - start:.6f} seconds")
+
+print(f"Training LinearRegression time: {end - start:.6f} seconds")
 
 # Feed the scaled training set and get the predictions
 yhat_train = linear_model.predict(X_train_scaled)

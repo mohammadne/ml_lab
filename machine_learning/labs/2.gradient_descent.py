@@ -47,6 +47,8 @@ def gradient_descent(
     history = []
     prev_cost = float('inf')
 
+    # axis=0 → operate down the rows (column-wise)
+    # axis=1 → operate across the columns (row-wise)
     x_mean = np.mean(x, axis=0)  # shape (n,)
     x_std = np.std(x, axis=0)  # shape (n,)
     x_normalized = (x - x_mean) / x_std
@@ -73,11 +75,11 @@ def gradient_descent(
             if abs(prev_cost - current_cost) < threshold:
                 break
             prev_cost = current_cost
+            iterations += 1
         except:
             print(i, "exception occured")
             break
 
-        iterations += 1
 
     w = w_normalized / x_std
     b = b_normalized - np.sum((w_normalized * x_mean) / x_std)
