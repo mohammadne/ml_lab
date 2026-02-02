@@ -4,6 +4,17 @@
 - https://learn.deeplearning.ai/courses/vector-databases-embeddings-applications
 - [deeplerning ai course for usages of vector-database](https://learn.deeplearning.ai/courses/building-applications-vector-databases)
 
+## Wellknown Vector Databases
+
+- Pinecone
+- Weaviate
+- Milvus
+- Qdrant
+- pgvector
+- Redis
+- Vespa
+- Elastic/Open Search
+
 ## Local Milvus
 
 Local Milvus + MinIO setup for vector similarity search:
