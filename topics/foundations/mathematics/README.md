@@ -11,7 +11,6 @@ Chain rule
 Gradient descent
 
 - [Essence of Calculus](https://www.youtube.com/playlist?list=PLZHQObOWTQDMsr9K-rj53DwVRMYO3t5Yr)
-- [Essence of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
 - [coursera Math for ML (Linear Algebra, Multivariate Calculus, PCA and Basic ML)](https://www.coursera.org/specializations/mathematics-machine-learning?action=enroll)
 - [Multivariable calculus](https://www.khanacademy.org/math/multivariable-calculus)
 
@@ -24,6 +23,7 @@ Eigenvalues & eigenvectors
 Singular Value Decomposition (SVD)
 
 - https://www.khanacademy.org/math/linear-algebra
+- [Essence of linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab)
 
 ## Probability & Statistics
 

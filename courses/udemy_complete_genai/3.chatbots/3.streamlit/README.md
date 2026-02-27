@@ -13,3 +13,9 @@ pip install -r requirements.txt
 ## Deploy
 
 deploy on streamlit cloud via Github repository
+
+## Run
+
+```sh
+streamlit run chatbot.py
+```

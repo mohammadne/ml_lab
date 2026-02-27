@@ -1,6 +1,6 @@
 import streamlit as st
 from dotenv import load_dotenv
-from langchain_groq import ChatGroq
+from langchain_ollama import ChatOllama as LLM
 
 # load the env variables
 load_dotenv()
@@ -17,16 +17,14 @@ st.title("💬 Generative AI Chatbot")
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-print("A Rerun happened !!!")
-
 # show chat history
 for message in st.session_state.chat_history:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
 # llm initiate
-llm = ChatGroq(
-    model="llama-3.3-70b-versatile",
+llm = LLM(
+    model="gemma3:1b",
     temperature=0.0,
 )
 
@@ -38,8 +36,10 @@ if user_prompt:
     st.session_state.chat_history.append({"role": "user", "content": user_prompt})
 
     response = llm.invoke(
-        # use * to unpack previous list
-        input = [{"role": "system", "content": "You are a helpful assistant"}, *st.session_state.chat_history]
+        input = [
+            {"role": "system", "content": "You are a helpful assistant"},
+            *st.session_state.chat_history # use * to unpack previous list
+        ]
     )
     assistant_response = response.content
     st.session_state.chat_history.append({"role": "assistant", "content": assistant_response})
